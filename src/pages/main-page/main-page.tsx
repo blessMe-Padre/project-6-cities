@@ -70,7 +70,7 @@ function MainPage({ offersCount }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: offersCount }, () => <CitiesCard key={4} />)}
+                {Array.from({ length: offersCount }, (_, index) => <CitiesCard key={index} />)}
               </div>
             </section>
             <div className="cities__right-section">
