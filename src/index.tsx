@@ -6,8 +6,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
+const CARDS_COUNT = 5;
+
 root.render(
   <React.StrictMode>
-    <App />
+    <App offersCount={CARDS_COUNT} />
   </React.StrictMode>,
 );
