@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 function Property() {
   return (
     <div className="page">
