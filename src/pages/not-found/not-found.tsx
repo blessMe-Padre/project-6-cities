@@ -1,7 +1,7 @@
-import Logo from '../logo/logo';
+import Logo from '../../components/logo/logo';
 
-function Header(): JSX.Element {
-  return (
+const NotFound = (): JSX.Element => (
+  <div className="page">
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
@@ -15,6 +15,7 @@ function Header(): JSX.Element {
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
                   <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span className="header__favorite-count">3</span>
                 </a>
               </li>
               <li className="header__nav-item">
@@ -27,7 +28,10 @@ function Header(): JSX.Element {
         </div>
       </div>
     </header>
-  );
-}
+    <main className="page__main page__main--property">
+      404
+    </main>
+  </div>
+);
 
-export default Header;
+export default NotFound;

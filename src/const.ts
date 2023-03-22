@@ -1,12 +1,15 @@
+export const STARS_COUNT = 5;
+export const MAX_PERCENT_STARS_WIDTH = 100;
+
 export enum AppRoute {
-  Login = '/login',
-  Main = '/',
-  Favorite = '/favorite',
-  Property = '/offer',
+    Root = '/',
+    Login = '/login',
+    Favorites = '/favorites',
+    Property = '/offer',
 }
 
 export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
+    Auth = 'AUTH',
+    NoAuth = 'NO_AUTH',
+    Unknown = 'UNKNOWN',
 }
