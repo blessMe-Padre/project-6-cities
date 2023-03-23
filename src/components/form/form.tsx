@@ -1,7 +1,5 @@
 import type { ChangeEvent } from 'react';
-
 import { Fragment, useState } from 'react';
-
 import { STARS_COUNT } from '../../const';
 
 const Form = () => {
@@ -19,10 +17,10 @@ const Form = () => {
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
-                Your review
+        Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        {Array.from({ length: STARS_COUNT}, (_,i) => (
+        {Array.from({ length: STARS_COUNT }, (_, i) => (
           <Fragment key={`Star ${STARS_COUNT - i}`}>
             <input
               className="form__rating-input visually-hidden"
@@ -54,16 +52,16 @@ const Form = () => {
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-            To submit review please make sure to set{' '}
+          To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe your stay
-            with at least <b className="reviews__text-amount">50 characters</b>.
+          with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
           disabled
         >
-            Submit
+          Submit
         </button>
       </div>
     </form>
