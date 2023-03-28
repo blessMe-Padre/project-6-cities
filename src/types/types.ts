@@ -7,12 +7,12 @@ export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
-}
+};
 
 export type City = {
   name: CityName;
   location: Location;
-}
+};
 
 export type User = {
   id: number;
@@ -36,10 +36,8 @@ export type Offer = {
   title: string;
   isPremium: boolean;
   isFavorite: boolean;
+  city: City;
   location: Location;
   previewImage: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
-  city: {
-    name: CityName;
-  };
-}
+};

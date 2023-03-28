@@ -3,7 +3,7 @@ import type { Comment } from '../types/types';
 const reviews: Comment[] = [
   {
     id: 1,
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century3333333333333333333333333333333333333333333333333333333333.',
+    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
     date: '2019-04-24',
     rating: 4.2,
     user: {

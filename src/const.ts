@@ -1,4 +1,3 @@
-
 import { Offer, Location, CityName, SortName } from './types/types';
 
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
