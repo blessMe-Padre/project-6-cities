@@ -1,11 +1,12 @@
 import type { Offer } from '../../types/types';
 
-import { AppRoute, MAX_PERCENT_STARS_WIDTH, STARS_COUNT } from '../../const';
+import { AppRoute } from '../../const';
+import { getStarsWidth } from '../../utils';
 
 type CardProps = Offer & {
   onMouseMove?: (id: number) => void;
   onMouseLeave?: () => void;
-  place?: 'cities' | 'favorites';
+  place?: 'cities' | 'favorites' | 'near-places';
 };
 
 const Card = ({
@@ -54,8 +55,7 @@ const Card = ({
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className={`place-card__bookmark-button button${isFavorite ? ' place-card__bookmark-button--active' : ''
-            }`}
+            className={`place-card__bookmark-button button${isFavorite ? ' place-card__bookmark-button--active' : ''}`}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -68,7 +68,7 @@ const Card = ({
           <div className="place-card__stars rating__stars">
             <span
               style={{
-                width: `${(MAX_PERCENT_STARS_WIDTH * rating) / STARS_COUNT}%`,
+                width: getStarsWidth(rating),
               }}
             >
             </span>

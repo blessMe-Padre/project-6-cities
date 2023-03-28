@@ -11,6 +11,7 @@ import 'leaflet/dist/leaflet.css';
 type MapProps = {
   city: City;
   locations: Location[];
+  place?: 'cities' | 'property';
 };
 
 const defaultCustomIcon = new Icon({
@@ -19,11 +20,13 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-const Map = ({ city, locations }: MapProps): JSX.Element => {
+const Map = ({ city, locations, place = 'cities' }: MapProps): JSX.Element => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers: Marker[] = [];
+
     if (map) {
       locations.forEach(({ latitude: lat, longitude: lng }) => {
         const marker = new Marker({
@@ -34,11 +37,25 @@ const Map = ({ city, locations }: MapProps): JSX.Element => {
         marker
           .setIcon(defaultCustomIcon)
           .addTo(map);
+
+        markers.push(marker);
+      });
+
+      map.fitBounds([[city.location.latitude, city.location.longitude]], {
+        maxZoom: city.location.zoom
       });
     }
-  }, [map, locations]);
 
-  return <section className="cities__map map" ref={mapRef} />;
+    return () => {
+      if (map) {
+        markers.forEach((marker) => {
+          map.removeLayer(marker);
+        });
+      }
+    };
+  }, [map, city, locations]);
+
+  return <section className={`${place}__map map`} ref={mapRef} />;
 };
 
 export default Map;

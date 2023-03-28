@@ -2,22 +2,22 @@
 import type { City, Comment, Offer } from '../../types/types';
 import Map from '../../components/map/map';
 import ReviewList from '../../components/review-list/review-list';
+import Card from '../../components/card/card';
+import Logo from '../../components/logo/logo';
 
 type PropertyProps = {
   city: City;
   reviews: Comment[];
-  offers: Offer[];
+  nearbyOffers: Offer[];
 }
 
-const Property = ({ city, reviews, offers }: PropertyProps): JSX.Element => (
+const Property = ({ city, reviews, nearbyOffers }: PropertyProps): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link" href="main.html">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-            </a>
+            <Logo />
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -161,12 +161,13 @@ const Property = ({ city, reviews, offers }: PropertyProps): JSX.Element => (
             <ReviewList reviews={reviews} />
           </div>
         </div>
-        <Map city={city} locations={offers.map((offer) => offer.location)} />
+        <Map city={city} locations={nearbyOffers.map((offer) => offer.location)} place="property" />
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
+            {nearbyOffers.map((offer) => <Card key={offer.id} {...offer} place="near-places" />)}
           </div>
         </section>
       </div>
