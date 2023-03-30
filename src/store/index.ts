@@ -1,9 +1,10 @@
+/* eslint-disable */
 import { configureStore } from '@reduxjs/toolkit';
 
-import { reducer } from './reducer';
-import { fetchOffers } from './actions';
 import { createAPI } from '../services/api';
-
+import { reducer } from './reducer';
+import { fetchOffers, fetchUserStatus } from './actions';
+import history from '../browser-history';
 
 const api = createAPI();
 const store = configureStore({
@@ -11,10 +12,12 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {
       extraArgument: api,
+      history,
     },
   }),
 });
 
+store.dispatch(fetchUserStatus());
 store.dispatch(fetchOffers());
 
 export default store;

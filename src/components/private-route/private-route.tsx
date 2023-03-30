@@ -1,13 +1,14 @@
+/* eslint-disable */
 import { Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 type PrivateRouteProps = {
-  authorizationStatus: AuthorizationStatus;
   children: JSX.Element;
 }
 
-const PrivateRoute = (props: PrivateRouteProps): JSX.Element => {
-  const { authorizationStatus, children } = props;
+const PrivateRoute = ({ children }: PrivateRouteProps): JSX.Element => {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     authorizationStatus === AuthorizationStatus.Auth
@@ -15,5 +16,4 @@ const PrivateRoute = (props: PrivateRouteProps): JSX.Element => {
       : <Navigate to={AppRoute.Login} />
   );
 };
-
 export default PrivateRoute;
