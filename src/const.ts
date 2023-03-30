@@ -16,6 +16,10 @@ export enum AppRoute {
   Property = '/offer',
 }
 
+export enum ApiRoute {
+  Offers = '/hotels'
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
