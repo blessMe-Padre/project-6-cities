@@ -1,10 +1,17 @@
-import type { ChangeEvent } from 'react';
+/* eslint-disable */
+import type { ChangeEvent, FormEvent } from 'react';
 import { Fragment, useState } from 'react';
+
+import type { CommentAuth } from '../../types/types';
 import { STARS_COUNT } from '../../const';
 
-const Form = () => {
+type FormProps = {
+  onSubmit: (formData: Omit<CommentAuth, 'id'>) => void
+}
+
+const Form = ({ onSubmit }: FormProps) => {
   const [text, setText] = useState<string>('');
-  const [rating, setRating] = useState<number | null>(null);
+  const [rating, setRating] = useState<number>(0);
 
   const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -14,8 +21,17 @@ const Form = () => {
     setRating(Number(e.target.value));
   };
 
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    onSubmit({
+      comment: text,
+      rating
+    });
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -59,7 +75,6 @@ const Form = () => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
         >
           Submit
         </button>
@@ -69,3 +84,4 @@ const Form = () => {
 };
 
 export default Form;
+

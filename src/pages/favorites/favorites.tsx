@@ -7,12 +7,6 @@ type FavoritesProps = {
   offers: Offer[]
 }
 
-// [{
-//   city: 'Amsterdam',
-//   offers: []
-// }]
-
-
 const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
   const groupedOffersByCity = offers.reduce<{ [key: string]: Offer[] }>((acc, curr) => {
     if (curr.isFavorite) {

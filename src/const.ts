@@ -14,11 +14,13 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Property = '/offer',
+  NotFound = '/404'
 }
 
 export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
+  Comments = '/comments'
 }
 
 export enum AuthorizationStatus {
@@ -33,6 +35,11 @@ export enum Sorting {
   PriceDecrease = 'Price: high to low',
   TopRated = 'Top rated first',
 }
+
+export enum HttpCode {
+  NotFound = 404
+}
+
 
 export const Comprator: {
   [key in SortName]: (a: Offer, b: Offer) => number

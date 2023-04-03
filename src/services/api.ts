@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Token } from '../utils';
 
@@ -16,6 +17,7 @@ export const createAPI = (): AxiosInstance => {
 
       if (token) {
         // config.headers['x-token'] = token;
+        axios.defaults.headers.common["x-token"] = token;
       }
 
       return config;

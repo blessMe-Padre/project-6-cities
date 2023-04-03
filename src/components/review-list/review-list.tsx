@@ -1,18 +1,21 @@
 /* eslint-disable */
-import type { Comment } from '../../types/types';
+import { AuthorizationStatus } from '../../const';
+import type { CommentAuth, Comment } from '../../types/types';
 
 import Form from '../form/form';
 import Review from '../review/review';
 
 type ReviewListProps = {
   reviews: Comment[];
+  authorizationStatus: AuthorizationStatus;
+  onSubmit: (formData: Omit<CommentAuth, 'id'>) => void
 }
 
-const ReviewList = ({ reviews }: ReviewListProps) => {
+const ReviewList = ({ reviews, authorizationStatus, onSubmit }: ReviewListProps) => {
   if (reviews.length === 0) {
     return (
       <section className="property__reviews reviews">
-        <Form />
+        {authorizationStatus === AuthorizationStatus.Auth && <Form onSubmit={onSubmit} />}
       </section>
     );
   }
@@ -27,9 +30,10 @@ const ReviewList = ({ reviews }: ReviewListProps) => {
           <Review key={review.id} {...review} />
         ))}
       </ul>
-      <Form />
+      {authorizationStatus === AuthorizationStatus.Auth && <Form onSubmit={onSubmit} />}
     </section>
   );
 };
 
 export default ReviewList;
+

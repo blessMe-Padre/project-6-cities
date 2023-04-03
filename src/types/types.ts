@@ -24,6 +24,7 @@ export type User = {
 };
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
+export type CommentAuth = Pick<Comment, 'comment' | 'rating'> & Pick<Offer, 'id'>
 
 export type Comment = {
   id: number;
@@ -44,4 +45,10 @@ export type Offer = {
   location: Location;
   previewImage: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
+  bedrooms: number;
+  description: string;
+  goods: [string];
+  host: User;
+  images: [string];
+  maxAdults: number;
 };
