@@ -10,15 +10,17 @@ import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../..
 import Spinner from '../../components/spinner/spinner';
 import { getStarsWidth } from '../../utils';
 import { CommentAuth } from '../../types/types';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getComments, getIsOfferLoading, getNearbyOffers, getOffer } from '../../store/site-data/selectors';
 
 const Property = (): JSX.Element | null => {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOfferLoading = useAppSelector((state) => state.isOfferLoading);
-  const offer = useAppSelector((state) => state.offer);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
-  const comments = useAppSelector((state) => state.comments);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isOfferLoading = useAppSelector(getIsOfferLoading);
+  const offer = useAppSelector(getOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const comments = useAppSelector(getComments);
 
   useEffect(() => {
     const { id } = params;
@@ -30,12 +32,13 @@ const Property = (): JSX.Element | null => {
     }
   }, [params, dispatch]);
 
-  if (!offer) {
-    return null;
-  }
 
   if (isOfferLoading) {
     return <Spinner />;
+  }
+
+  if (!offer) {
+    return null;
   }
 
   const { id, images, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description, city, location } = offer;

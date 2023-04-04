@@ -2,13 +2,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { createAPI } from '../services/api';
-import { reducer } from './reducer';
+import { rootReducer } from './root-reducer';
 import { fetchOffers, fetchUserStatus } from './actions';
 import history from '../history';
 
 const api = createAPI();
 const store = configureStore({
-  reducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {
       extraArgument: {
